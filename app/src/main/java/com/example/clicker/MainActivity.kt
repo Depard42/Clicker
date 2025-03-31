@@ -30,6 +30,8 @@ class MainActivity : ComponentActivity() {
         val y: Float = e.y
         val myButton: Button = findViewById(R.id.button)
         myButton.text = "$x : $y"
+
+        //check
 //        myButton.translationX = x
 //        myButton.translationY = y
         new_button(x, y)
