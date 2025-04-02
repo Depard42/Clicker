@@ -1,22 +1,25 @@
 package com.example.clicker.enemies
 
-import com.example.clicker.MainActivity
 import android.graphics.Color
+import com.example.clicker.MainActivity
 import com.example.clicker.enemies.mylib.ScreenObject
 import kotlin.math.sqrt
 
 
-
-class Enemy(x: Float, y: Float, activity: MainActivity): ScreenObject(x, y, activity){
-    val speed: Float = 2f
-    var distance: Float = 1000f
+class Bullet(x: Float, y: Float, activity: MainActivity,val target: Enemy): ScreenObject(x, y, activity) {
+    companion object {
+        var width = 20
+        var height = width
+    }
+    val speed = 5.5f
 
     init {
-        createXmlObject(color = Color.RED, width = 50, height = 50, radius = 16f)
+        createXmlObject(color = Color.WHITE, width = width, height = height, radius = width*0.5f)
     }
-
-    fun move(xd: Float, yd: Float)
+    fun move()
     {
+        val xd = target.x
+        val yd = target.y
         val vectorX: Float = xd-x
         val vectorY: Float = yd-y
         val length = sqrt(vectorX*vectorX + vectorY*vectorY)
@@ -25,6 +28,5 @@ class Enemy(x: Float, y: Float, activity: MainActivity): ScreenObject(x, y, acti
         xmlObject.x = x
         xmlObject.y = y
 
-        distance = length
     }
 }
