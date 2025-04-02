@@ -8,7 +8,7 @@ import kotlin.math.sqrt
 
 class Bullet(x: Float, y: Float, activity: MainActivity,val target: Enemy): ScreenObject(x, y, activity) {
     companion object {
-        var width = 20
+        var width = 25
         var height = width
     }
     val speed = 5.5f
