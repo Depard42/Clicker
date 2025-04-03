@@ -15,9 +15,7 @@ class EnemiesController(val activity: MainActivity, val container: FrameLayout, 
     {
         val random= Random(1)
         for (i in 0..spawnQuantity){
-            val enemy = Enemy( x = random.nextFloat()*width, y = random.nextFloat()*height+2000, activity)
-
-            enemy.addToScreen(container)
+            val enemy = Enemy( x = random.nextFloat()*width, y = random.nextFloat()*height+2000, activity, container)
             enemies.add(enemy)
         }
     }
@@ -28,5 +26,9 @@ class EnemiesController(val activity: MainActivity, val container: FrameLayout, 
             enemy.move(500f, 500f)
         }
         sortedEnemiesByDistance = enemies.sortedBy { it.distance }
+    }
+    fun clear()
+    {
+        enemies.removeAll { it.health <= 0}
     }
 }

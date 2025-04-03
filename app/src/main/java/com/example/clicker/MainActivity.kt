@@ -11,6 +11,7 @@ import kotlinx.coroutines.*
 class MainActivity : ComponentActivity() {
     private var loopJob: Job? = null
     private var isActive = false
+    private var ticker: Long = 0
 
     lateinit var enemiesController: EnemiesController
     lateinit var hero: Hero
@@ -23,10 +24,11 @@ class MainActivity : ComponentActivity() {
         val container: FrameLayout = findViewById(R.id.RelativeLayout)
         val screenWidth = container.context.resources.displayMetrics.widthPixels
         // Init main controllers
+        hero = Hero(x = (screenWidth-Hero.width)*0.5f, y = (screenWidth-Hero.height)*0.5f, this, container)
         enemiesController = EnemiesController(this, container, screenWidth)
         enemiesController.createEnemies()
-        hero = Hero(x = (screenWidth-Hero.width)*0.5f, y = (screenWidth-Hero.height)*0.5f, this)
-        hero.addToScreen(container)
+
+
 
 
         startLoop()
@@ -36,6 +38,8 @@ class MainActivity : ComponentActivity() {
             // Обновление UI
             enemiesController.update()
             hero.update(enemiesController.sortedEnemiesByDistance)
+
+            enemiesController.clear()
         }
 
     }
@@ -43,10 +47,13 @@ class MainActivity : ComponentActivity() {
         isActive = true
         loopJob = CoroutineScope(Dispatchers.Default).launch {
             while (isActive) {
+                val currentTime = System.currentTimeMillis()
                 // Ваш повторяющийся код здесь
                 mainCycle()
                 // Задержка
-                delay(16)
+                val timeOfCycle = currentTime-ticker
+                ticker = currentTime
+                delay(16 - timeOfCycle)
             }
         }
     }
