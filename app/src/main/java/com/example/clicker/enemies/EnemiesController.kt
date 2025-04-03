@@ -7,7 +7,7 @@ class EnemiesController(val activity: MainActivity, val container: FrameLayout, 
     //val width = 1000
     val height = 2000
     val enemies = mutableListOf<Enemy>()
-    val spawnQuantity = 50
+    val spawnQuantity = 20
 
     lateinit var sortedEnemiesByDistance: List<Enemy>
 
@@ -15,7 +15,7 @@ class EnemiesController(val activity: MainActivity, val container: FrameLayout, 
     {
         val random= Random(1)
         for (i in 0..spawnQuantity){
-            val enemy = Enemy( x = random.nextFloat()*width, y = random.nextFloat()*height+2000, activity, container)
+            val enemy = Enemy( x = random.nextFloat()*width-width, y = random.nextFloat()*height, activity, container)
             enemies.add(enemy)
         }
     }

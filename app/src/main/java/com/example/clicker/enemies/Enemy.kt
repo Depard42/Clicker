@@ -3,18 +3,21 @@ package com.example.clicker.enemies
 import com.example.clicker.MainActivity
 import android.graphics.Color
 import android.widget.FrameLayout
+import com.example.clicker.R
+import com.example.clicker.enemies.mylib.ImageObject
 import com.example.clicker.enemies.mylib.ScreenObject
 import kotlin.math.sqrt
 import kotlin.reflect.KDeclarationContainer
 
 
-class Enemy(x: Float, y: Float, activity: MainActivity, container: FrameLayout): ScreenObject(x, y, activity, container){
+class Enemy(x: Float, y: Float, activity: MainActivity, container: FrameLayout): ImageObject(x, y, activity, container){
     val speed: Float = 1.5f
     var distance: Float = 1000f
     var health: Float = 100f
+    override var img: Int = R.drawable.enemy
 
     init {
-        createXmlObject(color = Color.RED, width = 50, height = 50, radius = 16f)
+        createXmlObject(width = 50, height = 50)
     }
 
     fun move(xd: Float, yd: Float)

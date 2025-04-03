@@ -3,21 +3,24 @@ package com.example.clicker.enemies
 import android.graphics.Color
 import android.widget.FrameLayout
 import com.example.clicker.MainActivity
+import com.example.clicker.R
+import com.example.clicker.enemies.mylib.ImageObject
 import com.example.clicker.enemies.mylib.ScreenObject
 import kotlin.math.sqrt
 
 
-class Bullet(x: Float, y: Float, activity: MainActivity,val target: Enemy, container: FrameLayout): ScreenObject(x, y, activity, container) {
+class Bullet(x: Float, y: Float, activity: MainActivity,val target: Enemy, container: FrameLayout): ImageObject(x, y, activity, container) {
     companion object {
         var width = 26
         var height = width
     }
-    val speed = 10f
+    val speed = 8f
     var damage = 100f
     var isDelete = false
+    override var img: Int = R.drawable.bullet
 
     init {
-        createXmlObject(color = Color.WHITE, width = width, height = height, radius = width*0.5f)
+        createXmlObject(width, height)
     }
     fun move()
     {
