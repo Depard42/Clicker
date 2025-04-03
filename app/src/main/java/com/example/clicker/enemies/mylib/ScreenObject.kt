@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.example.clicker.MainActivity
 
-open class ScreenObject(var x: Float, var y: Float, val activity: MainActivity) {
+open class ScreenObject(var x: Float, var y: Float, val activity: MainActivity, val container: FrameLayout) {
     val xmlObject = View(activity)
 
     fun createXmlObject(color: Int,
@@ -29,10 +29,16 @@ open class ScreenObject(var x: Float, var y: Float, val activity: MainActivity) 
         xmlObject.id =  View.generateViewId()
         xmlObject.x = x
         xmlObject.y = y
+
+        addToScreen()
     }
 
-    fun addToScreen(container: FrameLayout)
+    fun addToScreen()
     {
         container.addView(xmlObject)
+    }
+    fun removeFromScreen()
+    {
+        container.removeView(xmlObject)
     }
 }

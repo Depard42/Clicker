@@ -5,4 +5,12 @@
     android:id="@+id/RelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7881C8"/>
+    android:background="#7881C8">
+
+    <FrameLayout
+        android:id="@+id/enemyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+</FrameLayout>
